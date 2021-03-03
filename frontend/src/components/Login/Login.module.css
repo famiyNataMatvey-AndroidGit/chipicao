@@ -1,0 +1,35 @@
+.login_page {
+    display: grid;
+    grid-template-areas: ". . naruto"
+                        ". authorization-container ."
+                        "shaman-king . .";
+
+    grid-template-columns: 1fr 400px 1fr;
+    grid-template-rows: 300px 450px 300px;
+}
+
+.naruto_block {
+    grid-area: naruto;
+    text-align: right;
+}
+
+.naruto {
+    height: 400px;
+}
+
+.shaman_king_block {
+    grid-area: shaman-king;
+}
+
+.shaman_king {
+    height: 400px;
+}
+
+.content {
+    grid-area: authorization-container;
+    border: 1px solid #7A6500;
+    background: #FFD200;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+}

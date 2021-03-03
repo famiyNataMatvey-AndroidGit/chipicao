@@ -1,0 +1,20 @@
+.preload {
+    padding-top: 5%;
+    height: 100%;
+}
+
+.preload div {
+    display: flex;
+}
+.preload div img {
+    margin: auto;
+}
+
+.img_scooby_doo {
+    height: 450px;
+}
+
+
+.img_preload {
+    height: 150px;
+}

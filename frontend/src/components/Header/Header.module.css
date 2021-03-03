@@ -1,0 +1,42 @@
+.header {
+    background-color: white;
+}
+
+.header_logo {
+    padding-top: 10px;
+    width: 150px;
+}
+
+.header_avatar {
+    padding: 10px;
+    float: right;
+    width: 50px;
+    cursor: pointer;
+}
+
+.header_nav_link {
+    display: inline-block;
+}
+
+.header_category {
+    font-size: 20pt;
+    color: black;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+}
+
+.header_category:hover {
+    color: blue;
+}
+
+.pop_container {
+    display: inline-block;
+    background-color: aqua;
+    width: 200px;
+    height: 50px;
+
+}
+.logout_container {
+    background-color: gainsboro;
+
+}
