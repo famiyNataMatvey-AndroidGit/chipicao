@@ -18,5 +18,5 @@ const SketchbookList = (props) => {
 const mapStateToProps = (state) => ({})
 
 export default compose(withAuthRedirect,
-    connect(mapStateToProps, {getSketchbook})
+    connect(mapStateToProps, {})
 )(SketchbookList)

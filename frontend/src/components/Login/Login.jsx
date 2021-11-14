@@ -9,22 +9,51 @@ import {required} from "../../utils/validators";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {login, registration} from "../../redux/auth-reducer";
+import {Box, Link, TextField, Typography} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
+const renderTextField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <TextField
+    label={label}
+    variant="outlined"
+    size="small"
+    fullWidth
+    placeholder={label}
+    error={touched && invalid}
+    helperText={touched && error}
+    {...input}
+    {...custom}
+  />
+)
+
 
 const AuthenticationForm = ({handleSubmit, error, registrationMode}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {registrationMode ? createField("Email", "email", [required], Input) : null}
-            {createField("Имя пользователя", "username", [required], Input)}
-            {createField("Password", "password", [required], Input, {type: "password"})}
+            {registrationMode ? createField("Email", "email", [required], renderTextField) : null}
+            {createField("Имя пользователя", "username", [required], renderTextField)}
+            {createField("Password", "password", [required], renderTextField, {type: "password"})}
 
-            {error && <div className={style.formSummaryError}>
-                {error}
-            </div>
+            {
+                error &&
+                <div className={style.formSummaryError}>
+                    {error}
+                </div>
             }
-            <div>
-                <button>{registrationMode ? "Регистрация" : "Войти"}</button>
+            <div align="center">
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                >
+                  {registrationMode ? "Регистрация" : "Войти"}
+                </Button>
             </div>
-
         </form>
     )
 }
@@ -34,31 +63,32 @@ const AuthenticationReduxForm = reduxForm({form: 'authentication'})(Authenticati
 
 const Login = (props) => {
     let [registrationMode, setRegistrationMode] = useState(false);
+
+    if (props.isAuth) {
+        return <Redirect to={'/home'}/>
+    }
+
     let onSubmit = (formData) => {
         props.login(formData.username, formData.password)
     };
-
     if (registrationMode) {
         onSubmit = (formData) => {
             props.registration(formData.email, formData.username, formData.password, setRegistrationMode)
         }
     }
 
-    if (props.isAuth) {
-        return <Redirect to={'/home'}/>
-    }
-
     return <div className={s.login_page}>
         <div className={s.naruto_block}>
             <img className={s.naruto} src={naruto} alt='Naruto'/>
         </div>
+
         <div className={s.content}>
-            <h2>{registrationMode ? 'Регистрация' : 'Войти'}</h2>
+            <Typography align="center" component="h1" variant="h5">{registrationMode ? 'Регистрация' : 'Войти'}</Typography>
             <AuthenticationReduxForm onSubmit={onSubmit} registrationMode={registrationMode}/>
-            <div>
-                <NavLink to='/login' onClick={() => setRegistrationMode(!registrationMode)}>
-                    {registrationMode ? 'Перейти ко входу в систему': 'Перейти к регистрация'}
-                </NavLink>
+            <div align="center">
+                <Link to='/login' variant="body2" onClick={() => setRegistrationMode(!registrationMode)}>
+                  {registrationMode ? 'Перейти ко входу в систему': 'Перейти к регистрация'}
+                </Link>
             </div>
         </div>
         <div className={s.shaman_king_block}>

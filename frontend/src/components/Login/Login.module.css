@@ -29,7 +29,8 @@
     grid-area: authorization-container;
     border: 1px solid #7A6500;
     background: #FFD200;
-    width: 400px;
-    height: 500px;
+    width: 350px;
+    height: 300px;
     border-radius: 10px;
+    padding: 10px;
 }
