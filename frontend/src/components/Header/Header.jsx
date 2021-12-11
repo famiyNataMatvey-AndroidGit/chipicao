@@ -31,7 +31,7 @@ const Header = (props) => {
         <header className={s.header}>
             <img className={s.header_logo} src={logoPhoto}/>
             <div className={s.header_nav_link}>
-                <NavLink className={s.header_category} to={'/'}>{HOME}</NavLink>
+                <NavLink className={s.header_category} to={'/home'}>{HOME}</NavLink>
                 <NavLink className={s.header_category} to={'/'}>{MY_COLLECTION}</NavLink>
                 <NavLink className={s.header_category} to={'/administration'}>{ADMINISTRATION}</NavLink>
             </div>

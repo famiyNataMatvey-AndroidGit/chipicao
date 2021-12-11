@@ -2,11 +2,16 @@ import {instance} from "./api";
 
 const SKETCHBOOK_URL = 'api/sketchbook/'
 
-export const SketchbookAPI = {
-    getSketchbooks() {
-        return instance.get(SKETCHBOOK_URL + 'list/')
+export const sketchbookAPI = {
+    // getShortSketchbooks(params) {
+    //     return instance.get(SKETCHBOOK_URL + 'list/short/', params)
+    //         .then(response => response.data);
+    // },
+    getSketchbooks(params) {
+        return instance.get(SKETCHBOOK_URL, params)
             .then(response => response.data);
     },
+
     saveSketchbook(name, description) {
         return instance.post(SKETCHBOOK_URL, {name: name, description: description})
             .then(response => response.data);
@@ -27,10 +32,14 @@ export const SketchbookAPI = {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        });
+        }).then(response => response.data);
     },
     toggleStatus(sketchbookId, status) {
         return instance.patch(SKETCHBOOK_URL + `${sketchbookId}/toggle-${status}/`)
+            .then(response => response.data);
+    },
+    buySketchbook(sketchbookId) {
+        return instance.get(SKETCHBOOK_URL + `${sketchbookId}/buy/`)
             .then(response => response.data);
     }
 }

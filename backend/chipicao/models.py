@@ -26,6 +26,8 @@ class Sketchbook(models.Model):
         ACTIVATED = 'Activated'
         DEACTIVATED = 'Deactivated'
 
+    COST = 300
+
     name = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=4095)
     front_cover = models.ImageField('Передняя обложка для альбома', null=True, blank=True)
@@ -62,6 +64,13 @@ class Page(models.Model):
     class Meta:
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
+        ordering = ('number_of_page',)
+
+    def nex_page(self):
+        return Page.objects.filter(sketchbook_id=self.sketchbook_id, number_of_page__gt=self.number_of_page).first()
+
+    def previous_page(self):
+        return Page.objects.filter(sketchbook_id=self.sketchbook_id, number_of_page__lt=self.number_of_page).last()
 
 
 class Sticker(models.Model):

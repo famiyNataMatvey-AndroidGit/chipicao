@@ -28,7 +28,6 @@ const setCurrentUser = (userId, avatar, coins, fullName, isAuth) => ({
 });
 
 export const registration = (email, username, password, setRegistrationMode) => async (dispatch) => {
-    debugger
     const response = await authAPI.registration(email, username, password)
     setRegistrationMode(false)
 }
